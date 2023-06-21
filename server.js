@@ -11,6 +11,7 @@ mongoose
   .then(() => console.log("Connected to the Golf Course DB"));
 
 app.use("/golfer", require("./routes/golferRouter.js"));
+app.use("/course", require("./routes/courseRouter.js"))
 
 app.use((err, req, res, next) => {
   console.log(err);

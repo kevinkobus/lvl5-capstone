@@ -11,24 +11,34 @@ const golferSchema = new Schema({
     type: String,
     required: true,
   },
-  handicapRange: {
+  handicap: {
     type: Number,
-    required: true,
+    min: 0,
+    max: 36,
   },
-  golferId: {
-    type: Number,
+  username: {
+    type: String,
     required: true,
+    minlength: 8,
+    maxlength: 16,
   },
-  coursesPlayed: [
-    {
-      name: String,
-      location: String,
-      datePlayed: Date,
-      par: Number,
-      score: Number,
-    },
-  ],
-  coursesToPlay: [{ name: String, location: String, par: String }],
 });
 
 module.exports = mongoose.model("Golfer", golferSchema);
+
+//   coursesPlayed: [
+//     {
+//       name: String,
+//       location: String,
+//       datePlayed: Date,
+//       par: Number,
+//       score: Number,
+//     },
+//   ],
+//   coursesToPlay: [
+//     {
+//         name: String,
+//         location: String,
+//         par: String
+//     }
+// ]
