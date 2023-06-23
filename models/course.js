@@ -18,13 +18,7 @@ const courseSchema = new Schema({
   likes: {
     type: Number,
     default: 0,
-  },
-  golfer: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Golfer",
-    },
-  ],
+  }
 });
 
 module.exports = mongoose.model("Course", courseSchema);

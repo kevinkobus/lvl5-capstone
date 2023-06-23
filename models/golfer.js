@@ -22,23 +22,12 @@ const golferSchema = new Schema({
     minlength: 8,
     maxlength: 16,
   },
+  coursesPlayed: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Course",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Golfer", golferSchema);
-
-//   coursesPlayed: [
-//     {
-//       name: String,
-//       location: String,
-//       datePlayed: Date,
-//       par: Number,
-//       score: Number,
-//     },
-//   ],
-//   coursesToPlay: [
-//     {
-//         name: String,
-//         location: String,
-//         par: String
-//     }
-// ]

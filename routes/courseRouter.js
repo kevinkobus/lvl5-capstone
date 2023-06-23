@@ -3,8 +3,7 @@ const courseRouter = express.Router();
 const Course = require("../models/course.js");
 
 // POST - Add new course to the DB
-courseRouter.post("/:golferID", (req, res, next) => {
-    req.body.golfer = req.params.golferID
+courseRouter.post("/", (req, res, next) => { 
   const newCourse = new Course(req.body);
   newCourse
     .save()
