@@ -31,17 +31,15 @@ golferRouter.post("/", (req, res, next) => {
 // });
 
 // PUT - Add a course to coursesPlayed
-golferRouter.put("/:courseID", (req, res, next) => {
-    req.body.course = req.params.courseID
-    Golfer.findOneAndUpdate(
-        { _id: req.params.golferID } //find this golfer and update
-        req.body
+// golferRouter.put("/:courseID", (req, res, next) => {
+//     req.body.course = req.params.courseID
+//     Golfer.findOneAndUpdate(
+//         { _id: req.params.golferID } //find this golfer and update
+//         req.body
         
         
-        )
-})
-
-
+//         )
+// })
 
 // GET - Pull up golfer by golferId
 golferRouter.get("/:golferID", (req, res, next) => {

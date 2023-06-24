@@ -43,4 +43,22 @@ courseRouter.get("/", (req, res, next) => {
     });
 });
 
+// Like a course
+courseRouter.put("/like/:courseID", (req, res, next) => {
+  Course.findOneAndUpdate(
+    { _id: req.params.courseID }, // find this course
+    { $inc: {likes: 1 } }, // increment the likes by 1
+    {new: true }) // send the updated version
+    .then((updatedCourse) => {
+      if(!updatedCourse){
+        return res.status(404).send("Course not found")
+      }
+      return res.status(200).send(updatedCourse)
+    })
+    .catch((err) => {
+      res.status(500)
+      return next(err)
+    })
+})
+
 module.exports = courseRouter;
