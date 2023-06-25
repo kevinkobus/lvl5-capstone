@@ -68,7 +68,6 @@ const golferList = golfers.map((golfer) => {
   );
 });
 
-
   useEffect(() => {
     getGolfers();
   }, []);

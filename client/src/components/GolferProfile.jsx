@@ -7,18 +7,18 @@ import AddGolfer from "./AddGolfer";
 
 function GolferProfile(props) {
   // console.log(props)
-  const { title, genre, _id } = props;
+  const { firstName, lastName, handicap, username, coursesPlayed, _id } = props;
   const [editToggle, setEditToggle] = useState(false)
 
   return (
-    <div className="movie">
+    <div className="golfer">
     { !editToggle ?
         <>
-          <h1>{title}</h1>
-          <p>{genre}</p>
+          <h3>{firstName}</h3>
+          <h3>{lastName}</h3>
           <button 
             className="delete-btn" 
-            onClick={() => props.deleteMovie(_id)}>
+            onClick={() => props.deleteGolfer(_id)}>
             Delete
           </button>
           <button
@@ -29,12 +29,15 @@ function GolferProfile(props) {
         </>
     : 
       <>
-      <AddMovieForm
-        title={title}
-        genre={genre}
+      <AddGolfer
+        firstName={firstName}
+        lastName={lastName}
+        handicap={handicap}
+        username={username}
+        cousr
         _id={_id}
         btnText="Submit Edit"
-        submit={props.editMovie}
+        submit={props.editGolfer}
       />
       <button
         onClick={() => setEditToggle(prevToggle => !prevToggle)}>
