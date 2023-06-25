@@ -3,7 +3,7 @@ const courseRouter = express.Router();
 const Course = require("../models/course.js");
 
 // POST - Add new course to the DB
-courseRouter.post("/", (req, res, next) => { 
+courseRouter.post("/", (req, res, next) => {
   const newCourse = new Course(req.body);
   newCourse
     .save()
@@ -47,18 +47,52 @@ courseRouter.get("/", (req, res, next) => {
 courseRouter.put("/like/:courseID", (req, res, next) => {
   Course.findOneAndUpdate(
     { _id: req.params.courseID }, // find this course
-    { $inc: {likes: 1 } }, // increment the likes by 1
-    {new: true }) // send the updated version
+    { $inc: { likes: 1 } }, // increment the likes by 1
+    { new: true }) // send the updated version
     .then((updatedCourse) => {
-      if(!updatedCourse){
-        return res.status(404).send("Course not found")
+      if (!updatedCourse) {
+        return res.status(404).send("Course not found");
       }
-      return res.status(200).send(updatedCourse)
+      return res.status(200).send(updatedCourse);
     })
     .catch((err) => {
-      res.status(500)
-      return next(err)
-    })
-})
+      res.status(500);
+      return next(err);
+    });
+});
+
+// Get Course(s) by search term
+// courseRouter.get("/search", (req, res, next) => {
+//   const { course } = req.query
+//   const pattern = new RegExp(course)
+//   Course.find(
+//     { name: { $regex: pattern, $options: "i" } }),
+//     .then((courses) => {
+//       if(!courses){
+//         return res.status(404).send("Nothing found matching search criteria")
+//       }
+//       return res.status(200).send(courses)
+//     })
+//     .catch((err) => {
+//       res.status(500)
+//       return next(err)
+//     })
+// })
+
+// find courses by "likes" range (gte = greater)
+// courseRouter.get("/search/bylikes", (req, res, next) => {
+//  Course.where("likes").gte(5).exec(() => {
+//  .then((courses) => {
+//       if(!courses){
+//         return res.status(404).send("Nothing found matching search criteria")
+//       }
+//       return res.status(200).send(courses)
+//     })
+//     .catch((err) => {
+//       res.status(500)
+//       return next(err)
+// })
+// })
+// })
 
 module.exports = courseRouter;
