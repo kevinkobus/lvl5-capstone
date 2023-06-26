@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
+// import { StyleContextProvider } from "./components/StyleContext"
+// import { InfoContextProvider } from "./components/InfoContext"
 // import AddCourse from "./components/AddCourse"
-import AddGolfer from "./components/AddGolfer"
+import AddGolfer from "./components/AddGolfer";
 
 function App() {
   const [golfers, setGolfers] = useState([]);
@@ -43,30 +46,33 @@ function App() {
       // .then(res => console.log(res))
       .then((res) => {
         setGolfer((prevGolfer) =>
-          prevGolfer.map((golfer) => (golfer._id !== golferId ? golfer : res.data))
+          prevGolfer.map((golfer) =>
+            golfer._id !== golferId ? golfer : res.data
+          )
         );
       })
       .catch((err) => console.log(err));
   }
 
   function handleFilter(e) {
-    if(e.target.value === "reset"){
-      getGolfers()
+    if (e.target.value === "reset") {
+      getGolfers();
     } else {
-      axios.get(`/api/golfer/search/name?name=${e.target.value}`)
-      .then(res => setGolfers(res.data))
-      .catch(err => console.log(err))
+      axios
+        .get(`/api/golfer/search/name?name=${e.target.value}`)
+        .then((res) => setGolfers(res.data))
+        .catch((err) => console.log(err));
     }
   }
 
-//   mapping through golfers and returning the years to display in the dropdown
-const golferList = golfers.map((golfer) => {
-  return (
-    <option value={golfer} key={id}>
-      {golfer}
-    </option>
-  );
-});
+  //   mapping through golfers and returning the years to display in the dropdown
+  const golferList = golfers.map((golfer) => {
+    return (
+      <option value={golfer} key={id}>
+        {golfer}
+      </option>
+    );
+  });
 
   useEffect(() => {
     getGolfers();
@@ -74,10 +80,7 @@ const golferList = golfers.map((golfer) => {
 
   return (
     <div className="golfer-container">
-      <AddGolfer 
-      submit={addGolfer} 
-      btnText="Add Golfer" 
-      />
+      <AddGolfer submit={addGolfer} btnText="Add Golfer" />
 
       <h4>Filter by Name</h4>
       <select onChange={handleFilter} className="filter-golfer">
