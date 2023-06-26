@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
 // import { StyleContextProvider } from "./components/StyleContext"
 // import { InfoContextProvider } from "./components/InfoContext"
 // import AddCourse from "./components/AddCourse"
-import AddGolfer from "./components/AddGolfer";
+import AddGolferForm from "./components/AddGolferForm";
+import GolferProfile from "./components/GolferProfile"
 
 function App() {
   const [golfers, setGolfers] = useState([]);
@@ -17,6 +18,9 @@ function App() {
       .then((res) => setGolfers(res.data))
       .catch((err) => console.log(err.response.data.errMsg));
   }
+
+  // console.log(golfers)
+
   // POST
   function addGolfer(newGolfer) {
     axios
@@ -65,11 +69,11 @@ function App() {
     }
   }
 
-  //   mapping through golfers and returning the years to display in the dropdown
-  const golferList = golfers.map((golfer) => {
+  //   mapping through golfers and returning the names to display in the dropdown
+  const golferList = golfers.map((golfers) => {
     return (
-      <option value={golfer} key={id}>
-        {golfer}
+      <option value={golfers.firstName} key={golfers._id}>
+        {golfers.firstName} {golfers.lastName}
       </option>
     );
   });
@@ -80,7 +84,7 @@ function App() {
 
   return (
     <div className="golfer-container">
-      <AddGolfer submit={addGolfer} btnText="Add Golfer" />
+      <AddGolferForm submit={addGolfer} btnText="Add Golfer" />
 
       <h4>Filter by Name</h4>
       <select onChange={handleFilter} className="filter-golfer">
@@ -88,10 +92,10 @@ function App() {
         {golferList}
       </select>
 
-      {golfers.map((golfer) => (
+      {golfers.map((golfers) => (
         <GolferProfile
-          {...golfer}
-          key={golfer.name}
+          {...golfers}
+          key={golfers._id}
           deleteGolfer={deleteGolfer}
           editGolfer={editGolfer}
         />

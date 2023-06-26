@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-// Change this component to golfer info, inputs and fields need to match
-
-function AddGolfer(props) {
+function AddGolferForm(props) {
   const initialInputs = {
     firstName: props.firstName || "",
     lastName: props.lastName || "",
@@ -39,16 +37,16 @@ function AddGolfer(props) {
         onChange={handleChange}
         placeholder="Last Name"
       />
-       <input
+      <label htmlFor="handicap">Handicap</label>
+      <input
         type="number"
         name="handicap"
         value={inputs.handicap}
         onChange={handleChange}
-        placeholder="Handicap"
         min="0"
         max="36"
-      /> 
-        <input
+      />
+      <input
         type="text"
         name="username"
         value={inputs.username}
@@ -69,4 +67,4 @@ function AddGolfer(props) {
   );
 }
 
-export default AddGolfer;
+export default AddGolferForm;

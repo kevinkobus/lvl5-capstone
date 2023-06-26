@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import AddGolfer from "./AddGolfer";
-
-
-// Change this component to golfer info, inputs and fields need to match
+import AddGolfer from "./AddGolferForm";
 
 
 function GolferProfile(props) {
@@ -16,6 +13,8 @@ function GolferProfile(props) {
         <>
           <h3>{firstName}</h3>
           <h3>{lastName}</h3>
+          <h4>Handicap: {handicap}</h4>
+          <h5>Courses played: {coursesPlayed}</h5>
           <button 
             className="delete-btn" 
             onClick={() => props.deleteGolfer(_id)}>
@@ -34,8 +33,8 @@ function GolferProfile(props) {
         lastName={lastName}
         handicap={handicap}
         username={username}
-        cousr
         _id={_id}
+        key={_id}
         btnText="Submit Edit"
         submit={props.editGolfer}
       />
