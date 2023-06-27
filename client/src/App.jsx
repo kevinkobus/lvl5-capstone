@@ -1,107 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import axios from "axios";
 // import { StyleContextProvider } from "./components/StyleContext"
-// import { InfoContextProvider } from "./components/InfoContext"
-// import AddCourse from "./components/AddCourse"
-import AddGolferForm from "./components/AddGolferForm";
-import GolferProfile from "./components/GolferProfile"
+import { InfoContextProvider } from "./components/InfoContext";
+import Navbar from "./components/Navbar";
+import HomePage from "./components/HomePage";
+// import GolferProfile from "./components/GolferProfile";
+// import CourseProfile from "./components/CourseProfile"
+import Footer from "./components/Footer";
+// import AddGolferForm from "./components/AddGolferForm";
+// import GolferList from "./components/GolferList";
+// import GolferCard from "./components/GolferCard"
 
 function App() {
-  const [golfers, setGolfers] = useState([]);
-
-  // GET
-  function getGolfers() {
-    axios
-      .get("/api/golfer")
-      // .then((res) => console.log(res.data))
-      .then((res) => setGolfers(res.data))
-      .catch((err) => console.log(err.response.data.errMsg));
-  }
-
-  // console.log(golfers)
-
-  // POST
-  function addGolfer(newGolfer) {
-    axios
-      .post("/api/golfer", newGolfer)
-      // .then(res => console.log(res))
-      .then((res) => {
-        setGolfers((prevGolfers) => [...prevGolfers, res.data]);
-      })
-      .catch((err) => console.log(err));
-  }
-
-  function deleteGolfer(golferId) {
-    axios
-      .delete(`/api/golfer/${golferId}`)
-      // .then(res => console.log(res))
-      .then((res) => {
-        setGolfers((prevGolfers) =>
-          prevGolfers.filter((golfer) => golfer._id !== golferId)
-        );
-      })
-      .catch((err) => console.log(err));
-  }
-
-  function editGolfer(updates, golferId) {
-    axios
-      .put(`/api/golfer/${golferId}`, updates)
-      // .then(res => console.log(res))
-      .then((res) => {
-        setGolfer((prevGolfer) =>
-          prevGolfer.map((golfer) =>
-            golfer._id !== golferId ? golfer : res.data
-          )
-        );
-      })
-      .catch((err) => console.log(err));
-  }
-
-  function handleFilter(e) {
-    if (e.target.value === "reset") {
-      getGolfers();
-    } else {
-      axios
-        .get(`/api/golfer/search/name?name=${e.target.value}`)
-        .then((res) => setGolfers(res.data))
-        .catch((err) => console.log(err));
-    }
-  }
-
-  //   mapping through golfers and returning the names to display in the dropdown
-  const golferList = golfers.map((golfers) => {
-    return (
-      <option value={golfers.firstName} key={golfers._id}>
-        {golfers.firstName} {golfers.lastName}
-      </option>
-    );
-  });
-
-  useEffect(() => {
-    getGolfers();
-  }, []);
-
   return (
-    <div className="golfer-container">
-      <AddGolferForm submit={addGolfer} btnText="Add Golfer" />
-
-      <h4>Filter by Name</h4>
-      <select onChange={handleFilter} className="filter-golfer">
-        <option value="reset">- All Golfers -</option>
-        {golferList}
-      </select>
-
-      {golfers.map((golfers) => (
-        <GolferProfile
-          {...golfers}
-          key={golfers._id}
-          deleteGolfer={deleteGolfer}
-          editGolfer={editGolfer}
-        />
-      ))}
+    <div className="App">
+      <InfoContextProvider>
+        <Navbar />
+        <HomePage />
+        <Footer />
+      </InfoContextProvider>
     </div>
   );
 }
 
 export default App;
+
+{
+  /* submit={addGolfer}
+ btnText="Add Golfer" */
+}
+
+{
+  /* <Router>
+        <InfoContextProvider>
+          <Navbar>
+            <Link to="/home" className="link">
+              Home
+            </Link>
+            <Link to="/golferProfile" className="link">
+              Golfer Profile
+            </Link>
+            <Link to="/courseProfiles" className="link">
+              Course Profiles
+            </Link>
+          </Navbar>
+          <Routes>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/golferProfile" element={<GolferProfile />} />
+            <Route path="/courseProfile" element={<CourseProfile />} />
+          </Routes>
+          <Footer />
+        </InfoContextProvider>
+      </Router> */
+}

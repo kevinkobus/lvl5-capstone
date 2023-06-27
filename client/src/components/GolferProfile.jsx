@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import AddGolfer from "./AddGolferForm";
-
+import InfoContext, { InfoContext } from "./InfoContext"
 
 function GolferProfile(props) {
   // console.log(props)
-  const { firstName, lastName, handicap, username, coursesPlayed, _id } = props;
+
+const {  } = useContext(InfoContext)
+
+  const { firstName, lastName, handicap, username, _id } = props;
   const [editToggle, setEditToggle] = useState(false)
 
   return (
@@ -13,8 +16,6 @@ function GolferProfile(props) {
         <>
           <h3>{firstName}</h3>
           <h3>{lastName}</h3>
-          <h4>Handicap: {handicap}</h4>
-          <h5>Courses played: {coursesPlayed}</h5>
           <button 
             className="delete-btn" 
             onClick={() => props.deleteGolfer(_id)}>
@@ -33,6 +34,7 @@ function GolferProfile(props) {
         lastName={lastName}
         handicap={handicap}
         username={username}
+        coursesPlayed={coursesPlayed}
         _id={_id}
         key={_id}
         btnText="Submit Edit"

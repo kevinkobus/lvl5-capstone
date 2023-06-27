@@ -1,61 +1,109 @@
 * {
-    box-sizing: border-box;
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-  }
-  
-  h1 {
-    margin: 5px;
-  }
-  
-  p {
-    margin: 5px;
-  }
-  
-  .golfer-container {
-    display: flex;
-    flex-direction: column;
-    margin: 0 32px;
-  }
-  
-  .golfer {
-    border: 1px solid #333;
-    padding: 10px;
-    margin: 5px;
-  }
-  
-  form {
-    border: 1px solid #333;
-    padding: 10px;
-    margin: 5px;
-  }
-  
-  input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #333;
-    border-radius: 8px;
-    margin: 5px;
-  }
-  
-  button {
-    padding: 5px;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .delete-btn {
-    background-color: firebrick;
-    color: whitesmoke;
-  }
-  
-  .edit-btn {
-    background-color: cornflowerblue;
-    color: whitesmoke;
-  }
-  
-  .golfer-form {
-    width: 200px;
-  }
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  color: solid black;
+}
+
+/* Navbar styling */
+.nav-container {
+  /* border: 1px solid black; */
+  border-radius: 3px;
+  background-color: #005e23;
+  color: white;
+  height: 100px;
+  width: 100%;
+}
+
+.nav-title {
+  /* border: 1px solid black; */
+  font-size: 35px;
+  padding: 3px;
+}
+
+/* AddGolferForm styling */
+.golfer-form-container {
+  /* border: 1px solid black; */
+  border-radius: 3px;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.form-title {
+  align-self: center;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+.submit-btn {
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fcf400;
+  color: #ed0030;
+}
+
+/* GolferList and GolferCard styling */
+.golfer-search {
+  /* border: 1px solid black; */
+  width: 50%;
+  margin: 10px
+}
+
+.search-label {
+  padding-left: 10px;
+}
+
+/* .search-input {
+
+} */
+
+.golfer-list {
+  /* border: 1px solid black; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.golfer-card {
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: rgb(243, 229, 212);
+  padding: 10px;
+  margin: 5px;
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr); */
+}
+
+/* GolferProfile styling */
+.delete-btn {
+  background-color: lightgray;
+  color: white;
+}
+
+.edit-btn {
+  background-color: lightgray;
+  color: white;
+}
+
+/* Footer styling */
+.footer-container {
+  /* border: 1px solid black; */
+  background-color: #005e23;
+  color: white;
+  width: 100%;
+  height: 50px;
+}
+
+.developer-tag {
+  margin-top: 5px;
+}

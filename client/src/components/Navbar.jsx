@@ -2,16 +2,16 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function Navbar() {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   return (
-      <nav>
+      <nav className="nav-container">
         <h1 className="nav-title">Golf Tracker</h1>
-        <ul className="nav-links">
+        {/* <ul className="nav-links">
           <li className="link" onClick={()=> navigate("/home")}>Home</li>
-          <li className="link" onClick={()=> navigate("/overview")}>Golfer Overview</li>
-          <li className="link" onClick={()=> navigate("/courses")}>Courses</li>
-        </ul>
+          <li className="link" onClick={()=> navigate("/golferProfile")}>Golfer Profile</li>
+          <li className="link" onClick={()=> navigate("/courseProfiles")}>Course Profiles</li>
+        </ul> */}
       </nav> 
   )
 }

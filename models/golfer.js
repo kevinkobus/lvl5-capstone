@@ -22,7 +22,7 @@ const golferSchema = new Schema({
     minlength: 8,
     maxlength: 16,
   },
-  coursesPlayed: [
+  courses: [
     {
       type: Schema.Types.ObjectId,
       ref: "Course",
