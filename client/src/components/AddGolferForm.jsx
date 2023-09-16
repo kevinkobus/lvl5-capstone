@@ -27,7 +27,7 @@ function AddGolferForm(props) {
     setInputs(initialInputs);
   }
 
-  console.log(inputs)
+  // console.log(inputs)
 
   return (
     <div className="golfer-form-container">
